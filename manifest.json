@@ -1,0 +1,14 @@
+{
+    "name": "Demosovellus - Kiuruveden yrityshaku",
+    "short_name": "Demo - Yrityshaku",
+    "theme_color": "#2196f3",
+    "background_color": "#2196f3",
+    "display": "standalone",
+    "scope": "./",
+    "start_url": "https://yrityshaku-9ae07.firebaseapp.com/",
+    "icons": [{
+        "src": "logo.png",
+        "sizes": "144x144",
+        "type": "image/png"
+        }]
+}
