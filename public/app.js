@@ -15,7 +15,7 @@ if ("serviceWorker" in navigator) {
 }
 
 let app = {
-    version: '1.11'
+    version: '1.13'
 };
 
 class Resultbox {
@@ -76,16 +76,18 @@ function showNewestCompanies() {
 };
 
 function showRandomCompanies() {
-    const url = `https://avoindata.prh.fi/tr/v1?totalResults=true&maxResults=15&resultsFrom=0&registeredOffice=Kiuruvesi&companyRegistrationTo=${randomDate(new Date(1950, 0, 1), new Date()).toISOString().split('T')[0]}`;
+    let someRandomDate = randomDate(new Date(1950, 0, 1), new Date()).toISOString().split('T')[0];
+    let url = `https://avoindata.prh.fi/tr/v1?totalResults=true&maxResults=15&resultsFrom=0&registeredOffice=Kiuruvesi&companyRegistrationTo=${someRandomDate}`;
 
-    // Näytetään latausymyrä kunnes sivulle tulee dataa
+    // Näytetään latausympyrä kunnes sivulle tulee dataa
     nr.container.innerHTML = '<div class="donutSpinner"></div>';
     fetch(url)
     .then((data) => data.json())
-    .then(function(data) {
+    .then((data) => {
         nr.render(data.results);
+        nr.container.innerHTML = `<h3>Haettu ajalla: ${someRandomDate}</h3>` + nr.container.innerHTML;
     })
-    .catch(function() {
+    .catch(() => {
         nr.showOffline();
     })
 };
